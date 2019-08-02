@@ -1,0 +1,52 @@
+{% extends 'pari/base.html' %}
+
+{% block content %}
+    <div class="container-fluid text-center mt-5">
+        <h3>Saison</h3>
+        <!-- Card deck -->
+        <div class="card-deck">
+        {% for match in matchs %}
+          <!-- Card -->
+          <div class="card mb-3">
+
+            <!--Card image-->
+            <div class="view overlay">
+              <img class="card-img-top" src="{{ match.home_team.emblem }}" alt="Card image cap">
+              <a href="#!">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+
+            <!--Card content-->
+            <div class="card-body">
+
+              <!--Title-->
+              <h4 class="card-title">{{ match.home_team.name }} : {{ match.home_score }} - {{ match.away_score }} : {{ match.away_team.name }}</h4>
+              <!--Text-->
+              <p class="card-text">Date: {{ match.date_match }}<br>Heure: {{ match.time_match }}</p>
+              <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+              <button type="button" class="btn btn-light-blue btn-md">Parier</button>
+
+            </div>
+
+          </div>
+          <!-- Card -->
+        {% endfor %}
+        </div>
+        <!-- Card deck -->
+    </div>
+
+    {% if paginate %}
+        <div class="clearfix"></div>
+        <nav aria-label="">
+            <ul class="pager">
+                {% if matchs.has_previous %}
+                    <li><a href="?page={{ matchs.previous_page_number }}">Précédent</a></li>
+                {% endif %}
+                {% if matchs.has_next %}
+                    <li><a href="?page={{ matchs.next_page_number }}">Suivant</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+{% endblock %}

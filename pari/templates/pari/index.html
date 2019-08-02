@@ -1,0 +1,127 @@
+{% extends 'pari/base.html' %}
+
+{% block content %}
+    {% load static %}
+     <!--Section: Jumbotron-->
+      <section class="card wow fadeIn mb-3" style="background-image: url({% static 'téléchargement.png' %});">
+
+        <!-- Content -->
+        <div class="card-body text-white text-center py-5 px-5 my-5">
+
+          <h1 class="mb-4">
+            <strong>Binvenue sur Qo2</strong>
+          </h1>
+          <p>
+            <strong>Le meilleur site de pari pour la première ligue</strong>
+          </p>
+          <p class="mb-4">
+            <strong>Ici, pas de quote variante, c'est toujours quitte ou double.</strong>
+          </p>
+          <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white btn-lg">S'inscrire
+            <i class="fas fa-graduation-cap ml-2"></i>
+          </a>
+
+        </div>
+        <!-- Content -->
+      </section>
+      <!--Section: Jumbotron-->
+    <div class="container-fluid text-center mt-5">
+        <h3>Matches récents</h3>
+        <!-- Card deck -->
+        <div class="card-deck">
+        {% for match in old_ma %}
+          <!-- Card -->
+          <div class="card mb-3">
+
+            <!--Card image-->
+            <div class="view overlay">
+              <img class="card-img-top" src="{{ match.home_team.emblem }}" alt="Card image cap">
+              <a href="#!">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+
+            <!--Card content-->
+            <div class="card-body">
+
+              <!--Title-->
+              <h4 class="card-title">{{ match.home_team.name }} : {{ match.home_score }} - {{ match.away_score }} : {{ match.away_team.name }}</h4>
+              <!--Text-->
+              <p class="card-text">Date: {{ match.date_match }}<br>Heure: {{ match.time_match }}</p>
+            </div>
+
+          </div>
+          <!-- Card -->
+        {% endfor %}
+        </div>
+        <!-- Card deck -->
+    </div>
+    <div class="container-fluid text-center mt-5">
+        <h3>Matches Aujourd'hui</h3>
+        <!-- Card deck -->
+        <div class="card-deck">
+        {% for match in today_ma %}
+          <!-- Card -->
+          <div class="card mb-3">
+
+            <!--Card image-->
+            <div class="view overlay">
+              <img class="card-img-top" src="{{ match.home_team.emblem }}" alt="Card image cap">
+              <a href="#!">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+
+            <!--Card content-->
+            <div class="card-body">
+
+              <!--Title-->
+              <h4 class="card-title">{{ match.home_team.name }} : {{ match.home_score }} - {{ match.away_score }} : {{ match.away_team.name }}</h4>
+              <!--Text-->
+              <p class="card-text">Date: {{ match.date_match }}<br>lieu: {{ match.time_match }}</p>
+              <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+              <button type="button" class="btn btn-light-blue btn-md">Read more</button>
+
+            </div>
+
+          </div>
+          <!-- Card -->
+        {% endfor %}
+        </div>
+        <!-- Card deck -->
+    </div>
+    <div class="container-fluid text-center mt-5">
+        <h3>Matches à venir</h3>
+        <!-- Card deck -->
+        <div class="card-deck">
+        {% for match in next_ma %}
+          <!-- Card -->
+          <div class="card mb-3">
+
+            <!--Card image-->
+            <div class="view overlay">
+              <img class="card-img-top" src="{{ match.home_team.emblem }}" alt="Card image cap">
+              <a href="#!">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+
+            <!--Card content-->
+            <div class="card-body">
+
+              <!--Title-->
+              <h4 class="card-title">{{ match.home_team.name }} : {{ match.home_score }} - {{ match.away_score }} : {{ match.away_team.name }}</h4>
+              <!--Text-->
+              <p class="card-text">Date: {{ match.date_match }}<br>Heure: {{ match.time_match }}</p>
+              <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+              <button type="button" class="btn btn-light-blue btn-md">Parier</button>
+
+            </div>
+
+          </div>
+          <!-- Card -->
+        {% endfor %}
+        </div>
+        <!-- Card deck -->
+    </div>
+{% endblock %}
